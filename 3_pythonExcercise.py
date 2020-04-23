@@ -1,4 +1,4 @@
-# Modules
+# Modules & Declarations
 import numpy as np
 import random
 import requests
@@ -9,7 +9,7 @@ class HangmanGame:
     # Example API for Testing Purpose, Did not want to build one myself so I used the first free I found
     API_URL = "https://random-word-api.herokuapp.com/word?number=1&swear=0"
     gameIsBeaten = False
-    lives = 16
+    lives = 15
     round = 0
     word = ""
     maskedWord = ""
@@ -17,7 +17,7 @@ class HangmanGame:
     PREDEFINED_WORDS = ["extraordinary", "communication",
                         "membership", "psychologist"]  # Default Words when Example API
 
-    # Starting Game
+    # Starting the Game
     def start(self):
         self.clearConsole()
         print("-> Welcome to a simple Hangman Game! <-")
@@ -40,6 +40,58 @@ class HangmanGame:
         else:
             _ = system('clear')
 
+    def printWall(self, minus):
+        spaces = ""
+        length = 8 - minus
+        index = 0
+        while index < length:
+            spaces += " "
+            index += 1
+
+        return spaces + "|"
+
+    def printHangMan(self, lives):
+        # Line 5
+        if lives <= 4:
+            print("   __________")
+
+        # Line 4
+        if lives <= 5 and lives > 3:
+            print("   |")
+        elif lives <= 3:
+            print("   |" + self.printWall(0))
+
+        # Line 3
+        if lives == 7:
+            print("  ( ")
+        elif lives <= 6 and lives > 2:
+            print("  ( )")
+        elif lives <= 2:
+            print("  ( " + ")" + self.printWall(1))
+
+        # Line 2
+        if lives == 12:
+            print("   |")
+        elif lives == 11:
+            print("  -|")
+        elif lives == 10:
+            print(" --|")
+        elif lives == 9:
+            print(" --|-")
+        elif lives <= 8 and lives > 1:
+            print(" --|--")
+        elif lives <= 1:
+            print(" --|--" + self.printWall(2))
+
+        # Line 1
+        if lives == 14:
+            print("  /")
+        elif lives <= 13 and lives > 0:
+            print("  /" + " \\")
+        elif lives <= 0:
+            print("  /" + " \\" + self.printWall(1))
+
+    # Fetch Random Word from API
     def getRandomWordFromApi(self):
         try:
             r = requests.get(self.API_URL)
@@ -50,18 +102,21 @@ class HangmanGame:
         except:
             return ""
 
+    # Get Random Word when REST API is not working
     def getRandomPredefinedWord(self, words):
         if isinstance(words, list):
             return words[random.randint(0, len(words) - 1)]
         else:
             return ""
 
+    # Generate Masked Word
     def generateMaskFromWord(self, word):
         mask = ""
         for x in word:
             mask += "_"
         return mask
 
+    # Main Game Loop
     def enterGameLoop(self):
         while self.gameIsBeaten or self.lives > 0:
             self.round += 1
@@ -100,26 +155,32 @@ class HangmanGame:
         # End Screen
         self.showWordAndQuit()
 
+    # Show Current Game Stats
     def showGameOutput(self):
         print("########## ROUND " +
               str(self.round) + " ##########")
         print("# Lives:         " + str(self.lives))
         print("# Entered Keys:  " +
-              self.concatArrayElementsToString(self.enteredKeys))  # TODO: Add Hangman Man
+              self.concatArrayElementsToString(self.enteredKeys))
+        self.printHangMan(self.lives)
         self.printNewLine()
         print(self.maskedWord)
         self.printNewLine()
 
+    # Check if Player wants to Quit
     def isQuitGameKey(self, character):
         if character == "1":
             return True
 
+    # Quit Message and End Screen
     def showWordAndQuit(self):
         self.clearConsole()
         if self.gameIsBeaten:
             print("########## YOU WON! ##########")
         else:
             print("########## GAME OVER ##########")
+            self.printHangMan(0)
+            self.printNewLine()
 
         print("The Word to solve: " + self.word)
         print("You entered the following Keys: " +
@@ -127,19 +188,19 @@ class HangmanGame:
         print("Thanks for playing this simple Hangman Game!")
         self.printNewLine()
 
+    # Wait for User Input
     def waitForInput(self):
         return input("Type in a Character or '1' to QUIT: ")
 
     def concatArrayElementsToString(self, array):
-        result = ""
-        for element in array:
-            result += element + "; "
-        return result
+        return "; ".join(array)
 
+    # Check if a String contains a character
     def wordContainsCharacter(self, word, character):
         index = word.find(character)
         return index >= 0
 
+    # Update Masked Word => Replace _ with character on correct indices
     def updateMaskedWord(self, originalWord, maskedWord, character):
         newMaskedWord = list(maskedWord)
         indexList = self.getAllCharacterIndexInWord(originalWord, character)
@@ -149,6 +210,7 @@ class HangmanGame:
 
         return "".join(newMaskedWord)
 
+    # Get all Indices of character in a word
     def getAllCharacterIndexInWord(self, word, character):
         indexList = np.int_([])
         wordLength = len(word)
@@ -161,6 +223,7 @@ class HangmanGame:
 
         return indexList
 
+    # Check if two Strings are the same (ignoring capitals)
     def compareWords(self, word1, word2):
         return word1.lower() == word2.lower()
 
