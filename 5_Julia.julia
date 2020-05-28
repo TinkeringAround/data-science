@@ -1,0 +1,58 @@
+# Excercises RAJ - ES5 - Excercise 3
+# Create a 2x4 two dimensional matrix with random floats in it and in the next step determine the biggest element.
+
+A = rand(2, 4) # Random Float Matrix
+max = maximum(A) # Maximum of Matrix A
+
+# Excercises RAJ - ES5 - Excercise 4
+# 1. Create two matrices of the same layout and test if addition and subtraction of the matrix works as expected: C = A + B
+
+A = rand(1:10, 3, 5)
+B = rand(1:10, 3, 5)
+
+C = A + B   # elementwise addition
+D = C - B   # elementwise subtraction
+
+print("Addition and Subtraction of two Matrices of same dimension works as expected.")
+
+# 2. Now compare matrix multiplication either this way A * B and this way A .* B. Whats the difference?!
+
+C = A * B   # Not working variant, dimension mismatch
+print("Dimension mismatch! 2 (3x5) Matrices cannot be multiplicated the correct way, rows count from Matrix A has to match to columns count of Matrix B")
+
+D = A .* B 
+print("In this variant it works, because the values from the same indices are getting multiplicated. For example A[1,1] * B[1,1]. In this case both Matrices has to have the same dimensions for the iteration to work.")
+
+# 3. What about matrix division with "/" or "\"?!
+
+A = rand(1:10, 3, 3)
+B = rand(1:10, 3, 3)
+
+C = A / B           # Here C * E = A * B^(-1) is calculated
+D = C * B           # Here C * B = A * E is the reverse operation
+print("Division from A with B is not defined. Here C * E = A * B^(-1) is calculated. The reverse operations results in D = A again just using Floats instead of the initial int data type.")
+
+C = A \ B           # Here E * C = A^(-1) * B is calculated
+D = A * C           # Here A * C = E * B is the reverse operation 
+print("Division from B with A is not defined. Here E * C = A^(-1) * B is calculated.")
+
+# 4. Create a 3x3 integer matrix A with useful numbers. Now try A+1, A-1, A*2, A/2.
+
+A = rand(1:10, 3, 3)
+
+C = A + 1 # Working would A .+ 1 for elementwise addition with 1
+D = A - 1 # Working would A .- 1 for elementwise subtraction with 1 
+E = A * 2 # Same as A .* 2 = elemtwise multiplication
+F = A / 2 # Same as A ./ 2 = elementwise division
+
+print("Simple Addition with a scalar cannot be performed by Julia. You have to use")
+print("Multiplication and Division with a scalar works as expected. All Indices are multiplicated with/divided by the scalar value.")
+
+# 5. Now multiply a 3x4 matrix with a suitable (4)vector.
+
+A = rand(1:10, 3, 4) # 3x4 Matrix
+B = rand(1:10, 4, 1) # 4x1 Vector
+
+C = A * B            # Result is 3x1 Vector
+
+print("Multiplication works as expected.")
