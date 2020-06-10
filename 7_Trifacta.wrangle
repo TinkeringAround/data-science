@@ -1,0 +1,9 @@
+sort order: id
+filter type: custom rowType: single row: ISMISSING([id]) action: Delete
+filter type: custom rowType: single row: ISMISSING([email]) action: Delete
+filter type: custom rowType: single row: ISMISSING([gender]) action: Delete
+filter type: custom rowType: single row: ISMISMATCHED(age, ['Integer']) action: Delete
+filter type: custom rowType: single row: EXACT(MERGE([first_name,last_name]), REMOVEWHITESPACE(full_name), false) action: Keep
+filter type: custom rowType: single row: MATCHES([gender], 'Male', false) || MATCHES([gender], 'Female', false) action: Keep
+filter type: custom rowType: single row: age > 0 && age < 120 action: Keep
+delete row: $sourcerownumber == 17

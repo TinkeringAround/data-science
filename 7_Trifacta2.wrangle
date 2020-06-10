@@ -1,0 +1,8 @@
+sort order: {Date Event Began}
+//Delete all with Missing Values
+filter type: custom rowType: single row: ISMISSING([Year]) || ISMISSING([{Date Event Began}]) || ISMISSING([{Time Event Began}]) || ISMISSING([{Date of Restoration}]) || ISMISSING([{Time of Restoration}]) || ISMISSING([Respondent]) || ISMISSING([{Geographic Areas}]) || ISMISSING([{NERC Region}]) || ISMISSING([{Demand Loss (MW)}]) || ISMISSING([{Number of Customers Affected}]) || ISMISSING([Tags]) action: Delete
+//Remove invalid Data Column after column starting left
+filter type: custom rowType: single row: MATCHES([{Event Description}], `/UNKNOWN/`, true) action: Delete
+filter type: custom rowType: single row: ISMISMATCHED({Time Event Began}, ['Datetime','hh:mm:ss','hh:MMa']) action: Delete
+filter type: custom rowType: single row: ISMISMATCHED({Date of Restoration}, ['Datetime','mm-dd-yy','mm*dd*yyyy']) action: Delete
+filter type: custom rowType: single row: MATCHES([{Time of Restoration}], `N/A`, false) action: Delete
