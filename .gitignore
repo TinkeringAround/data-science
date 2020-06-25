@@ -1,6 +1,6 @@
 .ipynb_checkpoints
 .vscode
 archive*
-data*
+data/*
 
 Einsendeaufgaben
