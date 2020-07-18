@@ -83,11 +83,11 @@ Das Resultat der Ausführung eines Skript-Durchlaufes ist oben zu sehen.
 
 Im Browser kann man unter http://localhost:4040 auch die Oberfläche von Spark erreichen.
 
-![Spark](./spark.png 'Spark')
+![Spark](https://github.com/TinkeringAround/data-science/blob/master/13_spark/spark.PNG 'Spark')
 
 Dort werden die Durchläufe samt entsprechenden Zeiten, zur Verfügung stehenden Workern etc. visualisiert.
 
 ## Lösung der Einsendeaufgabe
 In der nachfolgenden Grafik sind die am meisten verwendeten Wörter in der Textdatei aufgelistet. Dabei wurden vorher einige Filter angewendet wie z.B. Sonderzeichen entfernen und alle Lowercase machen. Pluralisierte Wörter auf das entsprechende Singular zurückzuführen habe ich mir mal erspart. :D
 
-![Lösung der ESA 13](./solution.png 'Solutions')
+![Lösung der ESA 13](https://github.com/TinkeringAround/data-science/blob/master/13_spark/solution.PNG 'Solutions')
