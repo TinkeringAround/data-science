@@ -31,7 +31,7 @@ Nachdem das Setup abgeschlossen wurde, kann in VS Code ein Python-Skript angeleg
 
 Die Extension wird dann beim Öffnen dieser ausgewählten Python-Skripte im Hintergrund das komplette Spark-Setup übernehmen. Beim Ausführen des Skriptes wird eine Art Pyton-Notebook Shell geöffnet. Diese kann auch als .ipynb-Datei exportiert werden.
 
-![Shell and Coding](./13_spark/result.png 'Results')
+![Shell and Coding](https://github.com/TinkeringAround/data-science/blob/master/13_spark/result.PNG 'Results')
 
 Das Skript zur Shell sieht z.B. wie folgt aus und ist in der settings.json als *13_spark.py* hinterlegt.
 
