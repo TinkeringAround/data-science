@@ -31,7 +31,7 @@ Nachdem das Setup abgeschlossen wurde, kann in VS Code ein Python-Skript angeleg
 
 Die Extension wird dann beim Öffnen dieser ausgewählten Python-Skripte im Hintergrund das komplette Spark-Setup übernehmen. Beim Ausführen des Skriptes wird eine Art Pyton-Notebook Shell geöffnet. Diese kann auch als .ipynb-Datei exportiert werden.
 
-![Shell and Coding](./result.png)
+![Shell and Coding](./result.png 'Results')
 
 Das Skript zur Shell sieht z.B. wie folgt aus und ist in der settings.json als *13_spark.py* hinterlegt.
 
@@ -83,11 +83,11 @@ Das Resultat der Ausführung eines Skript-Durchlaufes ist oben zu sehen.
 
 Im Browser kann man unter http://localhost:4040 auch die Oberfläche von Spark erreichen.
 
-![Spark](./spark.png)
+![Spark](./spark.png 'Spark')
 
 Dort werden die Durchläufe samt entsprechenden Zeiten, zur Verfügung stehenden Workern etc. visualisiert.
 
 ## Lösung der Einsendeaufgabe
 In der nachfolgenden Grafik sind die am meisten verwendeten Wörter in der Textdatei aufgelistet. Dabei wurden vorher einige Filter angewendet wie z.B. Sonderzeichen entfernen und alle Lowercase machen. Pluralisierte Wörter auf das entsprechende Singular zurückzuführen habe ich mir mal erspart. :D
 
-![Lösung der ESA 13](./solution.png)
+![Lösung der ESA 13](./solution.png 'Solutions')
